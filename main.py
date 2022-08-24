@@ -65,8 +65,11 @@ def tts(mensaje):
     engine.say(mensaje)
     engine.runAndWait()
 
-# Informar dia de la semana
 
+
+### FUNCIONES INFORMADORAS ###
+
+# Informar dia de la semana
 def what_day_is_tudei():
 
     # Extraigo que dia es hoy
@@ -87,3 +90,16 @@ def what_day_is_tudei():
     # Decir dia de la semana
     tts(f'Hoy es {semana[dia_semana]}')
 
+# Informar la hora
+def what_time_is_it():
+
+    # Get Full hora
+    hora = datetime.datetime.now()
+
+    # Format hora
+    hora_formated = f'La hora es {hora.hour} horas, con {hora.minute} minutos y {hora.second} segundos.'
+
+    # Decir Hora
+    tts(hora_formated)
+
+what_time_is_it()
