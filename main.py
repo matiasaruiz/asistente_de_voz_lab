@@ -3,6 +3,8 @@ import speech_recognition as sr
 import pywhatkit
 import yfinance as yf
 import pyjokes
+import datetime
+
 
 # Speech to text 
 def stt():
@@ -63,6 +65,25 @@ def tts(mensaje):
     engine.say(mensaje)
     engine.runAndWait()
 
+# Informar dia de la semana
 
+def what_day_is_tudei():
 
-    
+    # Extraigo que dia es hoy
+    dia = datetime.date.today()
+
+    # Extraigo el indice de dia de la semena
+    dia_semana = dia.weekday()
+
+    # Diccionario de nombre de los dias
+    semana = {0: 'Lunes',
+              1: 'Martes',
+              2: 'Miércoles',
+              3: 'Jueves',
+              4: 'Viernes',
+              5: 'Sábado',
+              6: 'Domingo'}
+
+    # Decir dia de la semana
+    tts(f'Hoy es {semana[dia_semana]}')
+
