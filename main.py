@@ -69,6 +69,25 @@ def tts(mensaje):
 
 ### FUNCIONES INFORMADORAS ###
 
+# Saludo inicial
+def saludo_inicial():
+
+    # Extraigo la hora
+    hora = datetime.datetime.now()
+
+    if hora.hour < 6 or hora.hour > 20:
+        tiempo = 'Buenas Noches!'
+    elif 6 <= hora.hour < 13:
+        tiempo = 'Buen Dia!'
+    else:
+        tiempo = 'Buenas tardes!'
+
+
+
+    tts(f'{tiempo} Soy Iris, tu asistente personal, en que puedo servirte?')
+
+
+saludo_inicial()
 # Informar dia de la semana
 def what_day_is_tudei():
 
@@ -90,6 +109,7 @@ def what_day_is_tudei():
     # Decir dia de la semana
     tts(f'Hoy es {semana[dia_semana]}')
 
+
 # Informar la hora
 def what_time_is_it():
 
@@ -102,4 +122,5 @@ def what_time_is_it():
     # Decir Hora
     tts(hora_formated)
 
-what_time_is_it()
+
+
