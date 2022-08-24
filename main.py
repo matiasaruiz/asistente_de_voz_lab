@@ -1,9 +1,11 @@
 import pyttsx3
+import pyaudio
 import speech_recognition as sr
 import pywhatkit
 import yfinance as yf
 import pyjokes
 import datetime
+import webbrowser
 
 
 # Speech to text 
@@ -87,7 +89,6 @@ def saludo_inicial():
     tts(f'{tiempo} Soy Iris, tu asistente personal, en que puedo servirte?')
 
 
-saludo_inicial()
 # Informar dia de la semana
 def what_day_is_tudei():
 
@@ -123,4 +124,33 @@ def what_time_is_it():
     tts(hora_formated)
 
 
+# Gestor de pedidos
 
+def iris():
+
+    saludo_inicial()
+
+    # Loop Central
+    corte = True
+    while corte:
+
+        # adquirir pedido
+        pedido = stt().lower()
+
+        if 'abrir mail' in pedido:
+            tts('Por supuesto, abriendo Youtube')
+            webbrowser.open('https://mail.google.com/mail/u/0/#inbox')
+            continue
+        elif 'abrir navegador' or 'abrir buscador' in pedido:
+            tts('Por supuesto, abriendo su navegador')
+            webbrowser.open('https://www.google.com/')
+            continue
+        elif 'que dia es hoy' in pedido:
+            what_day_is_tudei()
+            continue
+        elif 'que hora es' or 'la hora' in pedido:
+            what_time_is_it()
+            continue
+
+
+iris()
