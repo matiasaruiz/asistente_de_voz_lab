@@ -2,10 +2,10 @@ import pyttsx3
 import pyaudio
 import speech_recognition as sr
 import pywhatkit
-import yfinance as yf
 import pyjokes
 import datetime
 import webbrowser
+import wikipedia
 
 
 # Speech to text 
@@ -151,6 +151,31 @@ def iris():
         elif 'que hora es' or 'la hora' in pedido:
             what_time_is_it()
             continue
-
-
-iris()
+        elif 'busca en wikipedia' in pedido:
+            tts('Buscando eso en wikipedia')
+            pedido.replace('busca en wikipedia', '')
+            wikipedia.set_lang('es')
+            resultado = wikipedia.summary(pedido, sentences=1)
+            tts('Wikipedia dice: ')
+            tts(pedido)
+            continue
+        elif 'busca en internet' in pedido:
+            tts('Buscando en internet')
+            pedido.replace('busca en internet', '')
+            pywhatkit.search(pedido)
+            tts(f"Esto es lo que he encontrado al respecto de {pedido}")
+            continue
+        elif 'reproduci' or 'reproduce' or 'reproducir' or 'play' in pedido:
+            tts('Reproduciendo')
+            pedido.replace('reproduci','')
+            pedido.replace('reproduce', '')
+            pedido.replace('reproducir', '')
+            pedido.replace('play', '')
+            pywhatkit.playonyt(pedido)
+            continue
+        elif 'chiste' in pedido:
+            tts(pyjokes.get_joke('es'))
+            continue
+        elif 'hasta luego' or 'chau' in pedido:
+            tts('Hasta luego')
+            continue
